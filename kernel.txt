@@ -1,0 +1,45 @@
+Pasos para compilar el Kernel GNU/Linux
+
+1.-Instalar todos los paquetes necesarios
+
+kernel-package
+git
+libncurses-dev
+fakeroot
+wget
+bzip2
+build-essential
+xz-utils
+
+2.- Descargar el Kernel de tu preferencia
+
+    https://kernel.org
+	      
+3.- Descomprimir el archivo .tar en el directorio /usr/src
+
+    $ tar -xvJf <version del kernelNuveo>.tar.xz
+
+3.- Crear un enlace simbolico(esto es opcional).
+
+    $ sudo ln -s /usr/src/<linux-kernelNuevo> /usr/src/linux
+    
+4.- Cargar las opciones del kernel actual
+
+    $ sudo cp -v /boot/config-<kernelActual> .config
+    
+5.- Instalar dependencias faltantes para poder realizar la compilación
+
+    $ sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
+    
+##########################################################
+
+#Recuerda que la pantalla de tu terminal debe estar Maximizada
+
+6.- Compilación de Kernel
+
+	make-kpkg clean
+	sudo make menuconfig 
+	sudo make
+	sudo make modules
+	sudo make modules_install
+	sudo make install
